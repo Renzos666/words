@@ -150,6 +150,12 @@ justify-content: center;
   box-shadow: inset -8rem -8rem 88rem #000, inset 8rem 8rem 88rem #000;
 }
 
+#donate{
+                position:relative;
+                z-index:9999;
+                align-content:center;
+            }
+          
           </style>
       
       <!-- ******** -->
@@ -198,6 +204,7 @@ function Changepapertxt()
         <section class="paper">
             <div id="paper">
                 <h3>Soy solo una frase en un papel.</h3>
+                
             </div>
 
        </section>
@@ -207,6 +214,15 @@ function Changepapertxt()
         <div class="desk-leg desk-leg-3"></div>
 
         <div class="desk-leg desk-leg-base"></div>
+
+          <!-- Display donate button. -->
+       <div id="donate" class="donate">
+<form action="https://www.paypal.com/donate/?hosted_button_id=NLZW34BDFQY6J" method="post" target="_top">
+ <input type="image" name="submit" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="Donate">
+ <img alt="" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+</form>
+            </div>
+          
         <div class="ground"></div>
       </div>
     </div>
