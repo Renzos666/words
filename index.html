@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<!-- Document created by Renzo Silva-->
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+<!-- ******** -->
+    <title>Words&Trues</title>
+      
+<!-- ******** -->
+      <style>
+      
+          * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 50%;
+
+}
+
+.scene {
+  width: 100%;
+  height: 100vh;
+  background-color: #000;
+  background-image: repeating-conic-gradient(from 30deg, #001 30deg 90deg, #002 60deg 120deg, #000 90deg 280deg);
+  background-size: 33rem 33rem;
+  display: flex;
+  place-items: center;
+justify-content: center;
+  align-items: center;
+  perspective: 115rem;
+  overflow: hidden;
+}
+
+.desk {
+  width: 66rem;
+  height: 66rem;
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.3),
+    rgba(38, 191, 230, 0.3)
+  );
+  border-radius: 50%;
+  border-bottom: 2rem solid rgb(0, 33, 33);
+  transform: rotateX(80deg) translateZ(10rem);
+  transform-style: preserve-3d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 2s 1s;
+}
+
+.desk.change {
+  transform: rotateX(80deg) translateY(60rem) translateZ(6rem);
+  transition: transform 1s;
+}
+
+        
+.paper {
+    z-index:9999;
+    text-align:center;
+    align-content:center;
+    vertical-align: middle;
+    width: 15rem;
+    height: 20rem;
+    background-color: #fff;
+    padding: 2rem 2rem 2rem 2rem;
+    color: #555;
+    box-shadow: 0 0 3.3rem rgba(255, 255, 255, 0.8);
+    font-family: "arial", sans-serif;
+    font-size: 1.33rem;
+    text-justify: center;
+    transform-origin: bottom;
+    transition: transform 2s;
+    cursor: pointer;
+}
+
+.change .paper {
+  transform: rotateX(-80deg) translateY(-3rem) translateZ(-3rem);
+    box-shadow: 0 0 8.9rem rgba(0, 0, 0, 0.6);
+  transition: transform 1s 2s;
+}
+          
+
+
+.desk-leg {
+  width: 3rem;
+  height: 35rem;
+  background-color: rgba(99, 66, 33, 1.0);
+    box-shadow: 0 28rem 8.9rem rgba(0, 0, 0, 0.9);
+  position: absolute;
+  top: 30rem;
+  left: 31rem;
+}
+
+.desk-leg-base {
+  transform: rotateX(-0.01deg) rotateY(0deg) rotateZ(0deg);
+  transform-origin: top;
+  box-shadow: 0 0 1.1rem rgba(0, 0, 0, 0.6);
+  width: 56rem;
+  height: 56rem;
+  border-radius: 50%;
+  background-color: rgba(99, 66, 33, 1.0);
+  position: absolute;
+  left: auto;
+  top:auto;
+  border-bottom: 2rem solid rgb(0,0,0);
+
+}
+
+.desk-leg-1 {
+  transform: rotateX(-60deg) rotateZ(40deg);
+  transform-origin: top;
+  border-radius: 5rem 1rem;
+  border-right: 0.3rem solid rgb(66, 33, 3);
+  border-bottom: 0.3rem solid rgb(66, 33, 3);
+}
+
+.desk-leg-2 {
+  transform: rotateX(-60deg) rotateZ(-40deg);
+  transform-origin: top;
+  border-radius: 1rem 5rem;
+  border-left: 0.3rem solid rgb(99, 33, 3);
+  border-bottom: 0.3rem solid rgb(96, 33, 3);
+}
+
+.desk-leg-3 {
+  transform: rotateX(-140deg);
+  transform-origin: top;
+  border-radius: 1rem 3rem 3rem 3rem;
+  border-left: 0.3rem solid rgb(66, 33, 3);
+  border-right: 0.3rem solid rgb(33, 15, 2);
+}
+
+
+.ground {
+  filter: blur(0.05rem);
+  width: 160rem;
+  height: 160rem;
+  background-image: repeating-conic-gradient(from 30deg, #000 30deg 90deg, #003 60deg 120deg);
+  background-size: 9rem 9rem;
+  border-radius: 50%;
+  position: absolute;
+  transform: translateZ(-23.5rem);
+  box-shadow: inset -8rem -8rem 88rem #000, inset 8rem 8rem 88rem #000;
+}
+
+          </style>
+      
+      <!-- ******** -->
+      <script type="text/javaScript">
+          
+          var i=0;
+var papers =  new Array(
+'La vida solo es un minisculo fragmento de lo que llamamos existencia.',
+'Tus ojos siempre se mantienen cerrados cuando tu mente no quiere ver la realidad.',
+'no hay peor mentira que un te amo repetido.',    
+'El tiempo es lo único que no volverá a pesar de tus deseos.',
+'La vida es tan absurda como es tu propia forma de pensar.',
+'Las consecuencias de tus actos no solo afectan un momento, cambian tu mundo por completo.',
+'Los secretos del universo distante se encuentran ocultos en el lugar mas cercano que puedas imaginar.',
+'Dios solo es grande para quien así lo cree.',
+'Las ilusiones son fragmentos de grandeza que no tenemos.',
+'La vida solo es un sueño para quien se la pasa dormido.',
+'Virtuosa es aquella persona que brilla por su propia inteligencia.',
+'E = mc² >>> (Estamos igual, Muy CansaDos pequeño)',
+'Aquel que respeta la vida y su entorno ya vivio este ciclo muchas veces.',
+'La belleza de un alma pura es siempre contaminada por el que observa sin respeto.',
+'El silencio es el ingrediente perfecto para quien mucho escucha.',
+'No importa qué tanto entregues al mundo, siempre serás lo suficientemente pequeño para ser ignorado.',
+'La desilusión por desamor es una daga que cala profundamente hasta cortar la venda de nuestros ojos.',
+'Si alguien dice que te ama constantemente, probablemente se lo esta repitiendo a si mismo.',
+'Todos aquellos pensamientos que tratan de destruir tu entorno solo demuestran la inconformidad con la que vives a diario.',
+'Aquellos momentos abrumadores que nos invitan a gritar con furia a la nada, nos demuestran lo pequeños que nos sentimos ante situaciones que vemos como gigantes.',
+'Aveces quiero volver al pasado para tratar de variar las cosas, luego recuerdo que el ciclo va en bucle y la constante solo pasa a ser un capricho mas que una variable.');
+    
+function Changepapertxt()
+    {document.getElementById('paper').innerHTML=papers[parseInt(Math.random() * papers.length)];}
+
+          
+      </script>
+    
+      
+  </head>
+    
+    
+<!-- ******** -->    
+  <body onload="setInterval(Changepapertxt,8888)">
+      
+    <div class="scene">
+     
+      <div class="desk">
+        <section class="paper">
+            <div id="paper">
+                <h3>Soy solo una frase en un papel.</h3>
+            </div>
+
+       </section>
+        
+        <div class="desk-leg desk-leg-1"></div>
+        <div class="desk-leg desk-leg-2"></div>
+        <div class="desk-leg desk-leg-3"></div>
+
+        <div class="desk-leg desk-leg-base"></div>
+        <div class="ground"></div>
+      </div>
+    </div>
+<script src="act.js"></script>
+  </body>
+</html>
